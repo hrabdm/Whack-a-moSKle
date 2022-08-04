@@ -1,24 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Whack-a-moSKle</title>
-  </head>
-  <body>
-    <div id="video-bg">
-    <video width="100%" height="auto" preload="auto" autoplay="true" loop="true" muted="muted"
-           poster="img/bg_poster.png">
-        <source src="img/video_bg.mp4" type="video/mp4"></source>
-    </video>
-</div>    
-<div id="app">
-  <h1>Whack-a-moSKle!</h1>
+</head>
 
-</div>
+<body>
+    <div id="video-bg">
+        <video width="100%" height="auto" preload="auto" autoplay="true" loop="true" muted="muted"
+            poster="img/bg_poster.png">
+            <source src="img/video_bg.mp4" type="video/mp4">
+            </source>
+        </video>
+    </div>
+    <div id="app">
+        <h1>Whack-a-moSKle!</h1>
+        <h1 class="score"> 0</h1>
+        <div class="start">
+            <button onClick="startGame()">Start!</button>
+        </div>
+        <div class="game">
+            <div class="hole hole1">
+                <div class="mole"></div>
+            </div>
+            <div class="hole hole2">
+                <div class="mole"></div>
+            </div>
+            <div class="hole hole3">
+                <div class="mole"></div>
+            </div>
+            <div class="hole hole4">
+                <div class="mole"></div>
+            </div>
+            <div class="hole hole5">
+                <div class="mole"></div>
+            </div>
+            <div class="hole hole6">
+                <div class="mole"></div>
+            </div>
+            <div class="hole hole7">
+                <div class="mole"></div>
+            </div>
+            <div class="hole hole8">
+                <div class="mole"></div>
+            </div>
+            <div class="hole hole9">
+                <div class="mole"></div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
-    
-  </body>
+
+</body>
+
 </html>
