@@ -1,0 +1,12 @@
+/* Видео для заднего фона */
+#video-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 1;
+  background: url(img/bg_poster.png) no-repeat #384657;
+  background-size: cover;
+}
