@@ -63,6 +63,7 @@ html {
 #sound img {
   height: 50px;
   width: 50px;
+  cursor: pointer;
 }
 
 #app {
@@ -82,6 +83,7 @@ html {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
+  cursor: url(img/crosshair.png) 64 64, auto;
 }
 
 .hole {
@@ -103,13 +105,14 @@ html {
 }
 
 .mole {
-  background: url("img/ork1.png") bottom center no-repeat;
+  background: url(img/ork1.png) bottom center no-repeat;
   background-size: 50%;
   position: absolute;
   top: 100%;
   width: 100%;
   height: 100%;
   transition: all 0.4s ease;
+  cursor: url(img/crosshair_red.png) 64 64, auto;
 }
 
 .hole.up .mole {
