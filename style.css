@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap");
+
 html {
   box-sizing: border-box;
   font-size: 10px;
 }
+
 /* Видео для заднего фона */
 #video-bg {
   position: fixed;
@@ -16,7 +18,7 @@ html {
   background-size: cover;
 }
 
-#video-bg > video {
+#video-bg>video {
   position: absolute;
   top: 0;
   left: 0;
@@ -27,7 +29,7 @@ html {
 }
 
 @supports (object-fit: cover) {
-  #video-bg > video {
+  #video-bg>video {
     top: 0;
     left: 0;
     width: 100%;
@@ -35,6 +37,7 @@ html {
     object-fit: cover;
   }
 }
+
 /* ===
  Игра 
 === */
@@ -44,12 +47,30 @@ html {
   flex-wrap: wrap;
   align-items: center;
 }
+
 .header {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   width: 200px;
   align-items: center;
+}
+
+/*MUSIC*/
+
+#soundBtn {
+  background: url(/img/mute_sound.png)
+}
+
+#options div {
+  float: left;
+  cursor: pointer;
+}
+
+#options #sound,
+#options #sound img {
+  height: 50px;
+  width: 50px;
 }
 
 #app {
@@ -62,6 +83,7 @@ html {
   left: 0;
   overflow: hidden;
 }
+
 .game {
   width: 800px;
   height: 800px;
@@ -103,19 +125,20 @@ html {
 }
 
 #startBtn {
-  background: 	#ffcc00;
-  color: 	#0066cc;
+  background: #ffcc00;
+  color: #0066cc;
   font-size: 3rem;
   font-weight: bold;
   cursor: pointer;
   width: 150px;
-  border-radius: 10px; 
-   text-align: center;
+  border-radius: 10px;
+  text-align: center;
 }
+
 #startBtn:hover {
-  border-style:double;
+  border-style: double;
   color: #ffcc00;
-  background: #0066cc;  
+  background: #0066cc;
 
 }
 
@@ -136,10 +159,12 @@ h1 {
   text-align: center;
   font-size: 5rem;
   margin-bottom: 0;
+  z-index: 2;
+  position: relative;
 }
 
 .score {
-  color: 	#ffcc00;
+  color: #ffcc00;
   margin-top: 0%;
 
 }

@@ -7,6 +7,24 @@ let score = 0; // переменная счетчик очков
 let gameDuration = 20; // стартовое значение обратного отсчета    // 
 let timer; // пока пустая переменная
 
+//MUSIC
+audio = document.querySelector("audio")
+audio.volume = 0.1;
+player = document.querySelector("audio")
+sound = "off"; // "on"
+soundButton = document.querySelector("#sound img");
+soundButton.onclick = function () {
+    if (sound == "on") {
+        soundButton.src = "img/mute_sound.png"
+        sound = "off"
+        player.pause();
+    } else {
+        soundButton.src = "img/sound_on.png"
+        sound = "on"
+        player.play()
+    }
+}
+
 function randomTime(min, max) { // возвращает случайное целое число из диапазона мин макс
     return Math.round(Math.random() * (max - min) + min);
 }
