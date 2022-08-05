@@ -86,12 +86,18 @@ function countdown() { // функция обратного отсчета
     }
 }
 
+function randSound(min, max) { //возвращает случайное целое число
+    return Math.round(min - 0.5 + Math.random() * (max - min + 1));
+}
+
 function whack(event) {
     /* if проверяет что событие было инициировано
     скриптом, а не пользователем. если так - return, нет попадания */
     if (!event.isTrusted) return; // не false - return
+
+
     var audio = new Audio(); // Создаём новый элемент Audio
-    audio.src = 'img/donkey.mp3'; // Указываем путь к звуку "клика"
+    audio.src = "img/kick_" + randSound(1, 3) + ".mp3"; // Указываем путь к случайному звуку "клика"
     audio.autoplay = true; // Автоматически запускаем
     score++; // если проверку на читинг прошли - попали - добавить 1
     this.parentNode.classList.remove('up'); // удаление класса up из массива classList классов родителя элемента
