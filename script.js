@@ -25,6 +25,12 @@ soundButton.onclick = function () {
     }
 }
 
+function soundClick() {
+    var audio = new Audio(); // Создаём новый элемент Audio
+    audio.src = 'img/shot.mp3'; // Указываем путь к звуку "клика"
+    audio.autoplay = true; // Автоматически запускаем
+}
+
 function randomTime(min, max) { // возвращает случайное целое число из диапазона мин макс
     return Math.round(Math.random() * (max - min) + min);
 }
@@ -84,8 +90,10 @@ function whack(event) {
     /* if проверяет что событие было инициировано
     скриптом, а не пользователем. если так - return, нет попадания */
     if (!event.isTrusted) return; // не false - return
+    var audio = new Audio(); // Создаём новый элемент Audio
+    audio.src = 'img/donkey.mp3'; // Указываем путь к звуку "клика"
+    audio.autoplay = true; // Автоматически запускаем
     score++; // если проверку на читинг прошли - попали - добавить 1
-    console.dir(event);
     this.parentNode.classList.remove('up'); // удаление класса up из массива classList классов родителя элемента
     scoreBoard.textContent = "Уничтожено moskalei: " + score; // переопределить значение очков
 }

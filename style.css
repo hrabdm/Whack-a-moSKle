@@ -94,7 +94,7 @@ html {
 
 .hole:after {
   display: block;
-  background: url("img/hata1.png") bottom center no-repeat;
+  background: url(img/hata1.png) bottom center no-repeat;
   background-size: contain;
   content: "";
   width: 80%;
