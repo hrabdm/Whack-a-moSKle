@@ -49,6 +49,10 @@ function peep() { // фунция всплытие врага
     }, time);
 }
 
+function start() {
+    setTimeout(startGame, 1000);
+}
+
 function startGame() { // начало игры
     // удаляем все таймауты
     var max_id;
