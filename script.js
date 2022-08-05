@@ -6,23 +6,23 @@ let timeUp = false; // переменная указывающая состоя�
 let score = 0; // переменная счетчик очков
 let gameDuration = 20; // стартовое значение обратного отсчета    // 
 let timer; // пока пустая переменная
-let btnStart = document.querySelector("#startBtn");
+let btnStart = document.querySelector("#startBtn"); // кнопка старт
 
 //MUSIC
-audio = document.querySelector("audio")
+audio = document.querySelector("audio");
 audio.volume = 0.2;
-player = document.querySelector("audio")
+player = document.querySelector("audio");
 sound = "off"; // "on"
 soundButton = document.querySelector("#sound img");
 soundButton.onclick = function () {
     if (sound == "on") {
-        soundButton.src = "img/mute_sound.png"
-        sound = "off"
+        soundButton.src = "img/mute_sound.png";
+        sound = "off";
         player.pause();
     } else {
-        soundButton.src = "img/sound_on.png"
-        sound = "on"
-        player.play()
+        soundButton.src = "img/sound_on.png";
+        sound = "on";
+        player.play();
     }
 }
 
@@ -64,24 +64,26 @@ function startGame() { // начало игры
     while (max_id--) {
         clearTimeout(max_id);
     }
-    btnStart.setAttribute("disabled", true);
+    // soundButton.src = "img/sound_on.png";
+    // sound = "on";
+    // player.play();
+    btnStart.setAttribute("disabled", true); // делаем кнопку старт не активной после старта игры
     scoreBoard.textContent = 0; // обнуление счетчика очков
     timeUp = false; // время игры не закончилось
     score = 0; // обнулить счетчик
     peep();
     gameDuration = 20;
     countdown(); // вызов функции
-
 }
 
 function countdown() { // функция обратного отсчета
-    document.getElementById('startBtn').innerHTML = gameDuration;
+    document.getElementById('startBtn').innerHTML = gameDuration + " сек.";
     gameDuration--; // уменьшаем число на единицу
     if (gameDuration < 0) {
         clearTimeout(timer); // таймер остановится на нуле
         timeUp = true;
-        document.getElementById('startBtn').innerHTML = "RESTART";
-        btnStart.removeAttribute("disabled");
+        document.getElementById('startBtn').innerHTML = "RESTART"; // восстанавливаем надпись на кнопке старт
+        btnStart.removeAttribute("disabled"); // делаем кнопку старт активной после окончания игры
     } else {
         timer = setTimeout(countdown, 1000);
     }
