@@ -125,7 +125,7 @@ html {
   font-size: 3rem;
   font-weight: bold;
   cursor: pointer;
-  width: 150px;
+  width: 180px;
   border-radius: 10px;
   text-align: center;
 }
@@ -134,7 +134,7 @@ html {
   border-style: double;
   color: #ffcc00;
   background: #0066cc;
-
+  box-shadow: 10px 5px 5px #ffcc00;
 }
 
 *,

@@ -9,7 +9,7 @@ let timer; // пока пустая переменная
 
 //MUSIC
 audio = document.querySelector("audio")
-audio.volume = 0.1;
+audio.volume = 0.2;
 player = document.querySelector("audio")
 sound = "off"; // "on"
 soundButton = document.querySelector("#sound img");
@@ -28,6 +28,7 @@ soundButton.onclick = function () {
 function soundClick() {
     var audio = new Audio(); // Создаём новый элемент Audio
     audio.src = 'img/shot.mp3'; // Указываем путь к звуку "клика"
+    audio.volume = 0.7;
     audio.autoplay = true; // Автоматически запускаем
 }
 
@@ -81,6 +82,7 @@ function countdown() { // функция обратного отсчета
     if (gameDuration < 0) {
         clearTimeout(timer); // таймер остановится на нуле
         timeUp = true;
+        document.getElementById('startBtn').innerHTML = "RESTART";
     } else {
         timer = setTimeout(countdown, 1000);
     }
@@ -99,6 +101,7 @@ function whack(event) {
     var audio = new Audio(); // Создаём новый элемент Audio
     audio.src = "img/kick_" + randSound(1, 3) + ".mp3"; // Указываем путь к случайному звуку "клика"
     audio.autoplay = true; // Автоматически запускаем
+    audio.volume = 0.7;
     score++; // если проверку на читинг прошли - попали - добавить 1
     this.parentNode.classList.remove('up'); // удаление класса up из массива classList классов родителя элемента
     scoreBoard.textContent = "Уничтожено moskalei: " + score; // переопределить значение очков
