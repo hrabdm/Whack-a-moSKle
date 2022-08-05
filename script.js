@@ -50,6 +50,12 @@ function peep() { // фунция всплытие врага
 }
 
 function startGame() { // начало игры
+    // удаляем все таймауты
+    var max_id;
+    max_id = setTimeout(function () {});
+    while (max_id--) {
+        clearTimeout(max_id);
+    }
     scoreBoard.textContent = 0; // обнуление счетчика очков
     timeUp = false; // время игры не закончилось
     score = 0; // обнулить счетчик
