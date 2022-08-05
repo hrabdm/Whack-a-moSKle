@@ -6,6 +6,7 @@ let timeUp = false; // переменная указывающая состоя�
 let score = 0; // переменная счетчик очков
 let gameDuration = 20; // стартовое значение обратного отсчета    // 
 let timer; // пока пустая переменная
+let btnStart = document.querySelector("#startBtn");
 
 //MUSIC
 audio = document.querySelector("audio")
@@ -56,10 +57,6 @@ function peep() { // фунция всплытие врага
     }, time);
 }
 
-function start() {
-    setTimeout(startGame, 1000);
-}
-
 function startGame() { // начало игры
     // удаляем все таймауты
     var max_id;
@@ -67,6 +64,7 @@ function startGame() { // начало игры
     while (max_id--) {
         clearTimeout(max_id);
     }
+    btnStart.setAttribute("disabled", true);
     scoreBoard.textContent = 0; // обнуление счетчика очков
     timeUp = false; // время игры не закончилось
     score = 0; // обнулить счетчик
@@ -83,6 +81,7 @@ function countdown() { // функция обратного отсчета
         clearTimeout(timer); // таймер остановится на нуле
         timeUp = true;
         document.getElementById('startBtn').innerHTML = "RESTART";
+        btnStart.removeAttribute("disabled");
     } else {
         timer = setTimeout(countdown, 1000);
     }
@@ -96,8 +95,6 @@ function whack(event) {
     /* if проверяет что событие было инициировано
     скриптом, а не пользователем. если так - return, нет попадания */
     if (!event.isTrusted) return; // не false - return
-
-
     var audio = new Audio(); // Создаём новый элемент Audio
     audio.src = "img/kick_" + randSound(1, 3) + ".mp3"; // Указываем путь к случайному звуку "клика"
     audio.autoplay = true; // Автоматически запускаем
