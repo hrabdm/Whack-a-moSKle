@@ -74,9 +74,9 @@ function whack(event) {
     /* if проверяет что событие было инициировано
     скриптом, а не пользователем. если так - return, нет попадания */
     if (!event.isTrusted) return; // не false - return
-    score++; // если проверку на чатинг прошли - попали - добавить 1
+    score++; // если проверку на читинг прошли - попали - добавить 1
     this.parentNode.classList.remove('up'); // удаление класса up из массива classList классов родителя элемента
-    scoreBoard.textContent = score; // переопределить значение очков
+    scoreBoard.textContent = "Уничтожено moskalei: " + score; // переопределить значение очков
 }
 
 moles.forEach(mole => mole.addEventListener('click', whack));

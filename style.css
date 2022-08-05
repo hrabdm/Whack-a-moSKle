@@ -38,13 +38,11 @@ html {
   }
 }
 
-/* ===
- Игра 
-=== */
+/* 
+Игра 
+*/
 .container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -52,23 +50,17 @@ html {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  width: 200px;
+  width: 300px;
   align-items: center;
 }
 
 /*MUSIC*/
 
 #soundBtn {
-  background: url(/img/mute_sound.png)
+  background: url(img/mute_sound.png)
 }
 
-#options div {
-  float: left;
-  cursor: pointer;
-}
-
-#options #sound,
-#options #sound img {
+#sound img {
   height: 50px;
   width: 50px;
 }
@@ -86,7 +78,7 @@ html {
 
 .game {
   width: 800px;
-  height: 800px;
+  height: 400px;
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -100,7 +92,7 @@ html {
 
 .hole:after {
   display: block;
-  background: url("/img/hata1.png") bottom center no-repeat;
+  background: url("img/hata1.png") bottom center no-repeat;
   background-size: contain;
   content: "";
   width: 100%;
@@ -111,7 +103,7 @@ html {
 }
 
 .mole {
-  background: url("/img/ork1.png") bottom center no-repeat;
+  background: url("img/ork1.png") bottom center no-repeat;
   background-size: 50%;
   position: absolute;
   top: 100%;
@@ -157,14 +149,17 @@ body {
 
 h1 {
   text-align: center;
-  font-size: 5rem;
+  font-size: 7rem;
   margin-bottom: 0;
   z-index: 2;
   position: relative;
+  color: #ffcc00;
+  text-shadow: 3px 3px #0066cc;
 }
 
 .score {
-  color: #ffcc00;
+  color: #0066cc;
   margin-top: 0%;
-
+  font-size: 40px;
+  text-shadow: none;
 }
