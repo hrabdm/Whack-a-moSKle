@@ -1,47 +1,69 @@
-const holes = document.querySelectorAll('.hole');
-const scoreBoard = document.querySelector('.score');
-const moles = document.querySelectorAll('.mole');
-let lastHole;
-let timeUp = false;
-let score = 0;
+const holes = document.querySelectorAll('.hole'); // массив всех объектов с классом .hole
+const scoreBoard = document.querySelector('.score'); // объект класс очки
+const moles = document.querySelectorAll('.mole'); // массив всех объектов с классом .mole
+let lastHole; // переменная, где будем хранить последний домик
+let timeUp = false; // переменная указывающая состояние игры
+let score = 0; // переменная счетчик очков
+let gameDuration = 20; // стартовое значение обратного отсчета    // 
+let timer; // пока пустая переменная
 
-function randomTime(min, max) {
+function randomTime(min, max) { // возвращает случайное целое число из диапазона мин макс
     return Math.round(Math.random() * (max - min) + min);
 }
 
-function randomHole(holes) {
-    const idx = Math.floor(Math.random() * holes.length);
-    const hole = holes[idx];
-    if (hole === lastHole) {
-        return randomHole(holes);
+function randomHole(holes) { // функция выбор случайного дома
+    const idx = Math.floor(Math.random() * holes.length); // генерирует случайный индекс от 0 до количества домов
+    const hole = holes[idx]; // выбирает объект случайного дома по индексу
+    if (hole === lastHole) { // если выбранный дом совпадает с последним выбранным
+        return randomHole(holes); // пробуем снова выбрать дом (запускаем функцию снова)
     }
-    lastHole = hole;
-    return hole;
+    lastHole = hole; // если не совпал с предыдущим назначаем выбранный переменной
+    return hole; // возвращаем выбранный дом тому, кто вызвал эту функцию
 }
 
-function peep() {
-    const time = randomTime(500, 1500);
-    const hole = randomHole(holes);
-    hole.classList.add('up');
+function peep() { // фунция всплытие врага
+    const time = randomTime(500, 1500); // случайное время всплытия врага
+    const hole = randomHole(holes); // случайный выбор дома для появления врага
+    hole.classList.add('up'); // добавляем в массив классов выбранного дома класс .up
     setTimeout(() => {
-        hole.classList.remove('up');
-        if (!timeUp) peep();
+        hole.classList.remove('up'); // удаляем класс up из массива классов выбранного дома через time
+        if (!timeUp) peep(); // если время игры не закончилось (timeUp == false) делаем всплытие
     }, time);
 }
 
-function startGame() {
-    scoreBoard.textContent = 0;
-    timeUp = false;
-    score = 0;
+function startGame() { // начало игры
+    scoreBoard.textContent = 0; // обнуление счетчика очков
+    timeUp = false; // время игры не закончилось
+    score = 0; // обнулить счетчик
     peep();
-    setTimeout(() => timeUp = true, 10000);
+    gameDuration = 20;
+    countdown(); // вызов функции
+
 }
 
-function whack(e) {
-    if (!e.isTrusted) return;
-    score++;
-    this.parentNode.classList.remove('up');
-    scoreBoard.textContent = score;
+function countdown() { // функция обратного отсчета
+    document.getElementById('startBtn').innerHTML = gameDuration;
+    gameDuration--; // уменьшаем число на единицу
+    if (gameDuration < 0) {
+        clearTimeout(timer); // таймер остановится на нуле
+        timeUp = true;
+    } else {
+        timer = setTimeout(countdown, 1000);
+    }
+}
+
+function whack(event) {
+    /* if проверяет что событие было инициировано
+    скриптом, а не пользователем. если так - return, нет попадания */
+    if (!event.isTrusted) return; // не false - return
+    score++; // если проверку на чатинг прошли - попали - добавить 1
+    this.parentNode.classList.remove('up'); // удаление класса up из массива classList классов родителя элемента
+    scoreBoard.textContent = score; // переопределить значение очков
 }
 
 moles.forEach(mole => mole.addEventListener('click', whack));
+/* для каждого врага из массива врагов проверяет событие клик
+и выполняет функцию whack. forEach - перебор массива в стрелочной функции
+element.addEventListener(event, handler, [options]);
+event - Имя события, например "click".
+handler - Ссылка на функцию - обработчик.*/
