@@ -3,6 +3,22 @@ html {
   box-sizing: border-box;
   font-size: 10px;
 }
+
+/*MUSIC*/
+
+#soundBtn {
+  background: url(images/mute_sound.png)
+  #options div {
+    float: left;
+    cursor: pointer;
+}
+}
+#options #sound,
+#options #sound img {
+  height: 50px;
+  width: 50px;
+}
+
 /* Видео для заднего фона */
 #video-bg {
   position: fixed;

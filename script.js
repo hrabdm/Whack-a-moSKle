@@ -45,3 +45,23 @@ function whack(e) {
 }
 
 moles.forEach(mole => mole.addEventListener('click', whack));
+
+//MUSIC
+audio = document.querySelector("audio")
+audio.volume = 0.1;
+
+player = document.querySelector("audio")
+
+sound = "off"; // "on"
+soundButton = document.querySelector("#sound img");
+soundButton.onclick = function() {
+    if (sound == "on") {
+        soundButton.src = "img/mute_sound.png" 
+        sound = "off"
+        player.pause();
+    } else {
+        soundButton.src = "img/sound_on.png"
+        sound = "on"
+        player.play()
+    }
+}
