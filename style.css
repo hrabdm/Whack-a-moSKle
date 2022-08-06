@@ -126,15 +126,23 @@ html {
   font-weight: bold;
   cursor: pointer;
   width: 180px;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
+  box-shadow: 5px 5px 5px #0066cc;
+  transition: transform 0.15s;
 }
 
 #startBtn:hover {
-  border-style: double;
+  border-style: outset;
   color: #ffcc00;
   background: #0066cc;
-  box-shadow: 10px 5px 5px #ffcc00;
+  box-shadow: 5px 5px 5px #ffcc00;
+  /* transform: translate(0, 1px); */
+}
+
+#startBtn:active {
+  transform: translate(5px, 5px);
+  box-shadow: 1px 1px 5px #ffcc00;
 }
 
 *,

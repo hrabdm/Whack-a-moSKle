@@ -103,7 +103,7 @@ function whack(event) {
     audio.volume = 0.7;
     score++; // если проверку на читинг прошли - попали - добавить 1
     this.parentNode.classList.remove('up'); // удаление класса up из массива classList классов родителя элемента
-    scoreBoard.textContent = "Уничтожено moskalei: " + score; // переопределить значение очков
+    scoreBoard.textContent = "Звільнено домівок: " + score; // переопределить значение очков "Уничтожено moskalei: "
 }
 
 moles.forEach(mole => mole.addEventListener('click', whack));
