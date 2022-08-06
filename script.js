@@ -1,4 +1,5 @@
 const holes = document.querySelectorAll('.hole'); // массив всех объектов с классом .hole
+console.dir(holes);
 const scoreBoard = document.querySelector('.score'); // объект класс очки
 const moles = document.querySelectorAll('.mole'); // массив всех объектов с классом .mole
 let lastHole; // переменная, где будем хранить последний домик
@@ -68,7 +69,7 @@ function startGame() { // начало игры
     // sound = "on";
     // player.play();
     btnStart.setAttribute("disabled", true); // делаем кнопку старт не активной после старта игры
-    scoreBoard.textContent = 0; // обнуление счетчика очков
+    scoreBoard.textContent = "Звільнено домівок: 0"; // начальное отображение счетчика очков
     timeUp = false; // время игры не закончилось
     score = 0; // обнулить счетчик
     peep();
