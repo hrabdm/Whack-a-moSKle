@@ -170,3 +170,27 @@ h1 {
 *:after {
   box-sizing: inherit;
 }
+
+.boom {
+  background: url(img/boom.png);
+  position: absolute;
+  width: 400px;
+  height: 258px;
+  z-index: 10;
+  opacity: 0;
+  animation: ani 1.5s forwards;
+}
+
+@keyframes ani {
+  0% {
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  1000% {
+    opacity: 0;
+  }
+}

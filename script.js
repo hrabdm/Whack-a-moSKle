@@ -8,6 +8,7 @@ let score = 0; // переменная счетчик очков
 let gameDuration = 20; // стартовое значение обратного отсчета    // 
 let timer; // пока пустая переменная
 let btnStart = document.querySelector("#startBtn"); // кнопка старт
+let gameBlock = document.querySelector(".game");
 
 //MUSIC
 audio = document.querySelector("audio");
@@ -93,6 +94,21 @@ function countdown() { // функция обратного отсчета
 function randSound(min, max) { //возвращает случайное целое число
     return Math.round(min - 0.5 + Math.random() * (max - min + 1));
 }
+/*
+Создание взрыва на месте поражения врага пулей и удаление через 2 сек
+ */
+function createBoom(e) {
+    let boom = document.createElement("div"); // создание элемента
+    boom.className = "boom"; // назначение класса
+    boom.style.top = e.clientY - 129 + "px"; // привязка положения взрыва к врагу
+    boom.style.left = e.clientX - 200 + "px"; // привязка положения взрыва к врагу
+    gameBlock.appendChild(boom); // создание взрыва
+    console.dir(boom);
+    let timerID = setTimeout(function () {
+        boom.remove(); // удаление взрыва через 1 сек после создания
+        clearTimeout(timerID); // остановить таймер
+    }, 2000)
+}
 
 function whack(event) {
     /* if проверяет что событие было инициировано
@@ -105,8 +121,8 @@ function whack(event) {
     score++; // если проверку на читинг прошли - попали - добавить 1
     this.parentNode.classList.remove('up'); // удаление класса up из массива classList классов родителя элемента
     scoreBoard.textContent = "Звільнено домівок: " + score; // переопределить значение очков "Уничтожено moskalei: "
+    createBoom(event); // взрыв на месте попадания
 }
-
 moles.forEach(mole => mole.addEventListener('click', whack));
 /* для каждого врага из массива врагов проверяет событие клик
 и выполняет функцию whack. forEach - перебор массива в стрелочной функции
