@@ -172,7 +172,8 @@ h1 {
 }
 
 .boom {
-  background: url(img/boom.png);
+  background: url(img/boom.png) no-repeat;
+  background-size: 100%;
   position: absolute;
   width: 400px;
   height: 258px;

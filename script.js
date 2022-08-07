@@ -1,5 +1,4 @@
 const holes = document.querySelectorAll('.hole'); // массив всех объектов с классом .hole
-console.dir(holes);
 const scoreBoard = document.querySelector('.score'); // объект класс очки
 const moles = document.querySelectorAll('.mole'); // массив всех объектов с классом .mole
 let lastHole; // переменная, где будем хранить последний домик
@@ -15,20 +14,20 @@ audio = document.querySelector("audio");
 audio.volume = 0.2;
 player = document.querySelector("audio");
 sound = "off"; // "on"
-soundButton = document.querySelector("#sound img");
-soundButton.onclick = function () {
+soundButton = document.querySelector("#sound img"); // создаем переменную по выбору картинки в блоке саунд
+soundButton.onclick = function () { // функция при нажатии на картинку динамика
     if (sound == "on") {
-        soundButton.src = "img/mute_sound.png";
+        soundButton.src = "img/mute_sound.png"; // меняем картинку на звук выключен при клике
         sound = "off";
         player.pause();
     } else {
-        soundButton.src = "img/sound_on.png";
+        soundButton.src = "img/sound_on.png"; // меняем картинку на звук включен при клике
         sound = "on";
-        player.play();
+        player.play(); // запускаем музыку
     }
 }
 
-function soundClick() {
+function soundClick() { // функция для проигрывания звука выстрела, используется при клике во время игры
     var audio = new Audio(); // Создаём новый элемент Audio
     audio.src = 'img/shot.mp3'; // Указываем путь к звуку "клика"
     audio.volume = 0.7;
@@ -40,7 +39,7 @@ function randomTime(min, max) { // возвращает случайное це�
 }
 
 function randomHole(holes) { // функция выбор случайного дома
-    const idx = Math.floor(Math.random() * holes.length); // генерирует случайный индекс от 0 до количества домов
+    const idx = Math.floor(Math.random() * holes.length); // генерирует случайный индекс от 0 до 8 для 9 домов
     const hole = holes[idx]; // выбирает объект случайного дома по индексу
     if (hole === lastHole) { // если выбранный дом совпадает с последним выбранным
         return randomHole(holes); // пробуем снова выбрать дом (запускаем функцию снова)
@@ -70,6 +69,7 @@ function startGame() { // начало игры
     // sound = "on";
     // player.play();
     btnStart.setAttribute("disabled", true); // делаем кнопку старт не активной после старта игры
+    gameBlock.onclick = soundClick; // включения звука выстрела по клику на игровом поле во время игры
     scoreBoard.textContent = "Звільнено домівок: 0"; // начальное отображение счетчика очков
     timeUp = false; // время игры не закончилось
     score = 0; // обнулить счетчик
@@ -86,6 +86,7 @@ function countdown() { // функция обратного отсчета
         timeUp = true;
         document.getElementById('startBtn').innerHTML = "RESTART"; // восстанавливаем надпись на кнопке старт
         btnStart.removeAttribute("disabled"); // делаем кнопку старт активной после окончания игры
+        gameBlock.onclick = ""; // отключение звука выстрела после окончания игры
     } else {
         timer = setTimeout(countdown, 1000);
     }
