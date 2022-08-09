@@ -2,10 +2,10 @@ const holes = document.querySelectorAll('.hole'); // массив всех об�
 const scoreBoard = document.querySelector('.score'); // объект класс очки
 const moles = document.querySelectorAll('.mole'); // массив всех объектов с классом .mole
 let lastHole; // переменная, где будем хранить последний домик
-let timeUp = false; // переменная указывающая состояние игры
+let timeUp = false; // флаг состояние игры "время вышло"
 let score = 0; // переменная счетчик очков
-let gameDuration = 20; // стартовое значение обратного отсчета  
-let timer; // пока пустая переменная
+let gameDuration = 20; // длительность игры, стартовое значение обратного отсчета  
+let timer; // пока пустая переменная таймера обратного отсчета
 let btnStart = document.querySelector("#startBtn"); // кнопка старт
 let gameBlock = document.querySelector(".game"); // переменная блока игрового поля
 let melodySourse = document.querySelector("audio source"); // переменная для источника мелодии
@@ -13,8 +13,8 @@ let melodySourse = document.querySelector("audio source"); // переменна
 //MUSIC
 audio = document.querySelector("audio");
 audio.volume = 0.2;
-player = document.querySelector("audio");
-sound = "off"; // "on"
+player = document.querySelector("audio"); // переменная аудиоплеера фоновой музыки
+sound = "off"; // флаг состояния проигрывания фоновой музыки
 soundButton = document.querySelector("#sound img"); // создаем переменную по выбору картинки в блоке саунд
 
 soundButton.onclick = function () { // функция при нажатии на картинку динамика
@@ -36,7 +36,7 @@ function soundClick() { // функция для проигрывания зву
     audio.autoplay = true; // Автоматически запускаем
 }
 
-function randomTime(min, max) { // возвращает случайное целое число из диапазона мин макс
+function randomTime(min, max) { // возвращает случайное целое число из диапазона мин макс (не для малых целых чисел)
     return Math.round(Math.random() * (max - min) + min);
 }
 
@@ -60,7 +60,7 @@ function peep() { // фунция всплытие врага
     }, time);
 }
 
-function startGame() { // начало игры
+function startGame() { // начало или рестарт игры
     // удаляем все таймауты
     var max_id;
     max_id = setTimeout(function () {});
@@ -78,16 +78,16 @@ function startGame() { // начало игры
     timeUp = false; // время игры не закончилось
     score = 0; // обнулить счетчик
     peep();
-    gameDuration = 20;
-    countdown(); // вызов функции
+    gameDuration = 20; // обновление счетчика времени (для рестарта)
+    countdown(); // вызов функции обратного отсчета
 }
 
 function countdown() { // функция обратного отсчета
-    document.getElementById('startBtn').innerHTML = gameDuration + " сек.";
+    document.getElementById('startBtn').innerHTML = gameDuration + " сек."; // отображаем на кнопке стартовое время
     gameDuration--; // уменьшаем число на единицу
     if (gameDuration < 0) {
         clearTimeout(timer); // таймер остановится на нуле
-        timeUp = true;
+        timeUp = true; // время игры вышло
         document.getElementById('startBtn').innerHTML = "RESTART"; // восстанавливаем надпись на кнопке старт
         btnStart.removeAttribute("disabled"); // делаем кнопку старт активной после окончания игры
         gameBlock.onclick = ""; // отключение звука выстрела после окончания игры
@@ -97,7 +97,7 @@ function countdown() { // функция обратного отсчета
             player.play(); // запускаем проигрывание
         }
     } else {
-        timer = setTimeout(countdown, 1000);
+        timer = setTimeout(countdown, 1000); // отсчитываем итерацию 1 сек
     }
 }
 
@@ -110,8 +110,10 @@ function randSound(min, max) { //возвращает случайное цел�
 function createBoom(e) {
     let boom = document.createElement("div"); // создание элемента
     boom.className = "boom"; // назначение класса
-    boom.style.top = e.clientY - 129 + "px"; // привязка положения взрыва к врагу
-    boom.style.left = e.clientX - 200 + "px"; // привязка положения взрыва к врагу
+    /* привязка положения взрыва к курсору 
+    со сдвигом на половину ширины и высоты, пересчет vh в px */
+    boom.style.top = e.clientY - window.innerHeight * 0.15 + "px";
+    boom.style.left = e.clientX - window.innerHeight * 0.23 + "px";
     gameBlock.appendChild(boom); // создание взрыва
     console.dir(boom);
     let timerID = setTimeout(function () {
