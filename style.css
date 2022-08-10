@@ -111,6 +111,9 @@ h1 {
   text-align: center;
   box-shadow: 1vmin 1vmin 2vmin #0066cc;
   transition: transform 0.15s;
+  padding: 1vmin;
+  border: 0.2vmin #0066cc;
+  border-style: groove;
 }
 
 #startBtn:hover {
@@ -118,6 +121,9 @@ h1 {
   color: #ffcc00;
   background: #0066cc;
   box-shadow: 1vmin 1vmin 2vmin #ffcc00;
+  padding: 1vmin;
+  border: 0.2vmin #0066cc;
+  border-style: groove;
 }
 
 #startBtn:active {
