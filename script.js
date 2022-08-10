@@ -115,7 +115,6 @@ function createBoom(e) {
     boom.style.top = e.clientY - window.innerHeight * 0.15 + "px";
     boom.style.left = e.clientX - window.innerHeight * 0.23 + "px";
     gameBlock.appendChild(boom); // создание взрыва
-    console.dir(boom);
     let timerID = setTimeout(function () {
         boom.remove(); // удаление взрыва через 1 сек после создания
         clearTimeout(timerID); // остановить таймер
